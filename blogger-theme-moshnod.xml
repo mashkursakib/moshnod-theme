@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta charset='utf-8'/>
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+<title><data:blog.pageTitle/></title>
+<b:include data='blog' name='all-head-content'/>
+<link href='https://fonts.googleapis.com' rel='preconnect'/>
+<link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+<link href='https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&amp;family=Noto+Serif+Bengali:wght@400;600;700;900&amp;display=swap' rel='stylesheet'/>
+<b:skin><![CDATA[
+/*
+  Moshnod, custom Blogger news-portal theme.
+  Deep ash gray accents on a white default background, serif headlines,
+  three theme modes: device, white, black.
+*/
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f4f4f2;
+  --card: #ffffff;
+  --ink: #1f2326;
+  --ink-soft: #5c646b;
+  --line: #e2e4e5;
+  --ash: #2b2f33;
+  --ash-deep: #1d2124;
+  --ash-mid: #4a5257;
+  --ash-soft: #eef0f1;
+  --masthead-bg: #2b2f33;
+  --masthead-ink: #f5f4f2;
+  --masthead-soft: #c9ced2;
+  --btn-bg: #2b2f33;
+  --btn-ink: #ffffff;
+  --live: #b3261e;
+  --shadow: 0 2px 10px rgba(31, 35, 38, 0.08);
+}
+html[data-theme="dark"] {
+  --bg: #17191b;
+  --bg-soft: #1e2124;
+  --card: #202327;
+  --ink: #e9e7e2;
+  --ink-soft: #a9b0b6;
+  --line: #34383d;
+  --ash: #d7dbde;
+  --ash-deep: #e9e7e2;
+  --ash-mid: #9aa2a8;
+  --ash-soft: #26292d;
+  --masthead-bg: #101214;
+  --masthead-ink: #f5f4f2;
+  --masthead-soft: #a9b0b6;
+  --btn-bg: #e9e7e2;
+  --btn-ink: #1d2124;
+  --live: #e57373;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.40);
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    --bg: #17191b;
+    --bg-soft: #1e2124;
+    --card: #202327;
+    --ink: #e9e7e2;
+    --ink-soft: #a9b0b6;
+    --line: #34383d;
+    --ash: #d7dbde;
+    --ash-deep: #e9e7e2;
+    --ash-mid: #9aa2a8;
+    --ash-soft: #26292d;
+    --masthead-bg: #101214;
+    --masthead-ink: #f5f4f2;
+    --masthead-soft: #a9b0b6;
+    --btn-bg: #e9e7e2;
+    --btn-ink: #1d2124;
+    --live: #e57373;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.40);
+  }
+  html:not([data-theme]) .label-block { --sec: #9aa2a8; }
+}
+html[data-theme="dark"] .label-block { --sec: #9aa2a8; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Hind Siliguri', 'Noto Serif Bengali', sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+img, video, iframe { max-width: 100%; height: auto; }
+a { color: var(--ink); text-decoration: none; }
+a:hover { color: var(--ash-mid); }
+h1, h2, h3, h4 { font-family: 'Noto Serif Bengali', serif; line-height: 1.4; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+.wrap-wide { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+main { padding: 30px 0 10px; }
+.loading { color: var(--ink-soft); }
+
+/* Breaking banner */
+.breaking { background: var(--ash-deep); color: #fff; }
+.breaking-inner { display: flex; align-items: center; gap: 14px; padding: 10px 20px; min-width: 0; }
+.breaking-tag {
+  flex-shrink: 0;
+  background: #fff; color: var(--ash-deep);
+  font-family: 'Noto Serif Bengali', serif; font-weight: 700; font-size: 15px;
+  padding: 2px 12px; border-radius: 4px; white-space: nowrap;
+}
+#breaking-link { color: #fff; font-weight: 600; font-size: 16px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#breaking-link:hover { color: var(--masthead-soft); }
+
+/* Header: masthead band and nav */
+.site-header { border-bottom: 1px solid var(--line); }
+.masthead { background: var(--masthead-bg); color: var(--masthead-ink); text-align: center; padding: 34px 0 30px; }
+.wordmark { font-family: 'Noto Serif Bengali', serif; font-weight: 900; font-size: 58px; line-height: 1.1; margin: 0; letter-spacing: 1px; }
+.wordmark a { color: var(--masthead-ink); }
+.wordmark a:hover { color: var(--masthead-ink); text-decoration: none; }
+.tagline { margin: 6px 0 0; color: var(--masthead-soft); font-size: 15px; letter-spacing: 3px; text-transform: uppercase; }
+.navbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap; }
+.site-nav { display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 16px; }
+.site-nav a { color: var(--ink); font-weight: 600; }
+.site-nav a:hover { color: var(--ash-mid); }
+.nav-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.search-form { display: flex; gap: 8px; }
+.search-form input[type='search'] {
+  font-family: inherit; font-size: 15px; color: var(--ink);
+  background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+  padding: 7px 14px; width: 170px; outline: none;
+}
+.search-form input[type='search']:focus { border-color: var(--ash-mid); }
+.btn {
+  font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer;
+  background: var(--btn-bg); color: var(--btn-ink); border: 1px solid var(--btn-bg);
+  padding: 7px 16px; border-radius: 999px; white-space: nowrap;
+}
+.btn:hover { opacity: 0.85; color: var(--btn-ink); text-decoration: none; }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-ghost:hover { color: var(--ink); border-color: var(--ash-mid); background: transparent; opacity: 1; }
+.theme-switch { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.theme-switch button {
+  font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+  background: transparent; border: none; color: var(--ink-soft);
+  padding: 7px 12px;
+}
+.theme-switch button + button { border-left: 1px solid var(--line); }
+.theme-switch button.active { background: var(--btn-bg); color: var(--btn-ink); }
+
+/* Status messages for search and label pages */
+.status-msg { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 14px 20px; margin: 0 auto 28px; font-size: 17px; }
+
+/* Portal layout: posts plus live rail */
+.portal { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 36px; align-items: start; }
+.posts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+.post-hero { grid-column: 1 / -1; border-bottom: 1px solid var(--line); padding-bottom: 26px; }
+.post-hero .post-title { font-size: 40px; font-weight: 700; margin: 10px 0 12px; }
+.post-hero .post-title a { color: var(--ink); }
+.post-hero .post-title a:hover { color: var(--ash-mid); }
+.hero-img { display: block; margin-bottom: 16px; }
+.hero-img img { width: 100%; max-height: 420px; object-fit: cover; border-radius: 12px; display: block; }
+.post-deck { font-family: 'Noto Serif Bengali', serif; font-size: 19px; line-height: 1.7; color: var(--ink-soft); margin: 0 0 12px; }
+.post-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column;
+}
+.card-img { display: block; }
+.card-img img { width: 100%; height: 180px; object-fit: cover; display: block; }
+.card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.post-card .post-title { font-size: 22px; font-weight: 700; margin: 0; }
+.post-card .post-title a { color: var(--ink); }
+.post-card .post-title a:hover { color: var(--ash-mid); }
+.card-excerpt {
+  margin: 0; color: var(--ink-soft); font-size: 15px; line-height: 1.65;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.post-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; color: var(--ink-soft); font-size: 14px; }
+.post-labels { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.post-labels a { background: var(--ash-soft); color: var(--ash); padding: 2px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+.post-labels a:hover { background: var(--ash); color: #fff; text-decoration: none; }
+html[data-theme="dark"] .post-labels a:hover { color: var(--ash-deep); }
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .post-labels a:hover { color: var(--ash-deep); }
+}
+
+/* Live rail */
+.live-rail {
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: 20px 22px; box-shadow: var(--shadow);
+  position: sticky; top: 20px;
+}
+.rail-title { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font-size: 22px; border-bottom: 2px solid var(--ash); padding-bottom: 10px; }
+.live-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--live); flex-shrink: 0; animation: live-pulse 1.6s ease-in-out infinite; }
+@keyframes live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.live-list { list-style: none; margin: 0; padding: 0; }
+.live-list li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.live-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.live-list li:first-child { padding-top: 0; }
+.live-time { display: block; color: var(--ink-soft); font-size: 13px; margin-bottom: 2px; }
+.live-list a { font-weight: 600; font-size: 16px; line-height: 1.5; }
+
+/* Section titles */
+.section-title { font-size: 26px; font-weight: 700; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 2px solid var(--ash); }
+
+/* Top five */
+.top-five { margin-top: 44px; }
+.top-five-list { list-style: none; margin: 0; padding: 0; }
+.top-five-list li { display: flex; gap: 18px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.top-five-list li:last-child { border-bottom: none; }
+.tf-num { font-family: 'Noto Serif Bengali', serif; font-weight: 900; font-size: 36px; line-height: 1; color: var(--ash-mid); flex-shrink: 0; min-width: 40px; }
+.tf-body { min-width: 0; }
+.tf-body a { font-family: 'Noto Serif Bengali', serif; font-weight: 700; font-size: 20px; line-height: 1.5; }
+.tf-date { color: var(--ink-soft); font-size: 14px; margin-top: 2px; }
+
+/* Label section blocks */
+.label-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 40px; margin-top: 44px; }
+.label-block { --sec: #2b2f33; border-top: 3px solid var(--sec); padding-top: 14px; }
+.sec-bd { --sec: #2b2f33; }
+.sec-pol { --sec: #3d4a52; }
+.sec-biz { --sec: #4c5a63; }
+.sec-health { --sec: #5a6670; }
+.sec-opinion { --sec: #66707a; }
+.label-block-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.label-block-head h3 { margin: 0; font-size: 22px; }
+.label-block-head h3 a { color: var(--sec); }
+.more-link { font-size: 14px; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+.label-block-list { list-style: none; margin: 0; padding: 0; }
+.label-block-list li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.label-block-list li:last-child { border-bottom: none; }
+.label-block-list a { font-weight: 600; font-size: 17px; line-height: 1.5; }
+.lb-date { color: var(--ink-soft); font-size: 13px; margin-top: 2px; }
+
+/* Single post view */
+.post-item { padding-top: 6px; }
+.post-item .post-title { font-size: 40px; font-weight: 700; margin: 0 0 14px; }
+.post-item .post-meta { margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.post-body { font-family: 'Noto Serif Bengali', serif; font-size: 19px; line-height: 1.9; }
+.post-body p { margin: 0 0 1.1em; }
+.post-body p.deck { font-size: 21px; font-weight: 600; color: var(--ink-soft); line-height: 1.7; }
+.post-body h2 { font-size: 26px; margin: 1.4em 0 0.6em; }
+.post-body h3 { font-size: 22px; margin: 1.3em 0 0.5em; }
+.post-body blockquote { border-left: 4px solid var(--ash); margin: 1.5em 0; padding: 2px 0 2px 22px; font-size: 22px; line-height: 1.6; color: var(--ash-mid); }
+.post-body blockquote p { margin: 0; }
+.post-body ul, .post-body ol { margin: 0 0 1.1em; padding-left: 26px; }
+.post-body li { margin: 4px 0; }
+.post-body img { border-radius: 10px; }
+.post-body table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; }
+.post-body td, .post-body th { border: 1px solid var(--line); padding: 8px 12px; }
+.post-body pre { background: var(--bg-soft); padding: 14px 18px; border-radius: 10px; overflow-x: auto; font-size: 15px; }
+.post-body hr { border: none; border-top: 1px solid var(--line); margin: 2em auto; width: 40%; }
+.post-body div.key-points {
+  background: var(--ash-soft); border: 1px solid var(--line); border-left: 4px solid var(--ash);
+  border-radius: 10px; padding: 18px 22px; margin: 1.5em 0;
+}
+.post-body div.key-points h2, .post-body div.key-points h3, .post-body div.key-points h4 { margin-top: 0; font-size: 20px; }
+.post-body div.key-points ul, .post-body div.key-points ol { margin-bottom: 0; }
+.post-body div.sources { border-top: 1px solid var(--line); margin-top: 2em; padding-top: 14px; font-size: 15px; line-height: 1.7; color: var(--ink-soft); }
+.post-body div.sources h2, .post-body div.sources h3, .post-body div.sources h4 { font-size: 17px; color: var(--ink); margin: 0 0 6px; }
+.post-body div.sources a { color: var(--ink); text-decoration: underline; }
+.post-body a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--ash-mid); }
+.post-body a:hover { color: var(--ash-mid); }
+
+/* Reading progress bar */
+.progress-bar { position: fixed; top: 0; left: 0; height: 4px; width: 0; background: var(--ash); z-index: 200; }
+
+/* Related reading */
+.related { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px 26px; margin: 44px 0; }
+.related h3 { margin: 0; font-size: 22px; }
+.related-note { margin: 4px 0 0; color: var(--ink-soft); font-size: 15px; }
+.related ul { margin: 12px 0 0; padding-left: 22px; }
+.related li { margin: 8px 0; }
+.related li a { color: var(--ink); font-weight: 600; }
+.related li a:hover { color: var(--ash-mid); }
+.related-loading { color: var(--ink-soft); }
+
+/* Pagination */
+.pager { display: flex; justify-content: space-between; gap: 12px; margin: 34px 0 40px; }
+.pager-spacer { flex: 1; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); background: var(--bg-soft); padding: 40px 0 48px; color: var(--ink-soft); margin-top: 50px; }
+.footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.footer-col h3 { margin: 0 0 10px; font-size: 18px; color: var(--ink); }
+.footer-col ul { list-style: none; margin: 0; padding: 0; }
+.footer-col li { margin: 6px 0; font-size: 16px; }
+.footer-col li a { color: var(--ink-soft); }
+.footer-col li a:hover { color: var(--ink); }
+.footer-col p { margin: 0; font-size: 16px; }
+.footer-bottom { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; text-align: center; }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .portal { grid-template-columns: 1fr; }
+  .live-rail { position: static; }
+}
+@media (max-width: 720px) {
+  .wordmark { font-size: 42px; }
+  .posts-grid { grid-template-columns: 1fr; }
+  .label-blocks { grid-template-columns: 1fr; }
+  .post-hero .post-title, .post-item .post-title { font-size: 30px; }
+  .post-body { font-size: 18px; }
+  .post-body blockquote { font-size: 20px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .search-form input[type='search'] { width: 140px; }
+}
+@media (max-width: 480px) {
+  .navbar { flex-direction: column; align-items: stretch; }
+  .nav-tools { width: 100%; }
+  .search-form { flex: 1; }
+  .search-form input[type='search'] { flex: 1; width: auto; }
+  .breaking-inner { padding: 8px 16px; }
+  .tf-num { font-size: 30px; min-width: 32px; }
+  .tf-body a { font-size: 18px; }
+}
+]]></b:skin>
+<script type='text/javascript'>
+//<![CDATA[
+(function () {
+  try {
+    var saved = localStorage.getItem('moshnod-theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else if (saved === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch (e) {}
+})();
+//]]>
+</script>
+</head>
+<body>
+<b:if cond='data:blog.pageType == "item"'>
+<div class='progress-bar' id='progress-bar'/>
+</b:if>
+<b:if cond='data:blog.url == data:blog.homepageUrl'>
+<div class='breaking' hidden='hidden' id='breaking-banner'>
+<div class='wrap-wide breaking-inner'>
+<span class='breaking-tag'>ব্রেকিং</span>
+<a href='#' id='breaking-link'/>
+</div>
+</div>
+</b:if>
+<header class='site-header'>
+<div class='masthead'>
+<div class='wrap-wide'>
+<h1 class='wordmark'><a expr:href='data:blog.homepageUrl'>মসনদ</a></h1>
+<p class='tagline'>The Seat of Power</p>
+</div>
+</div>
+<div class='navbar wrap-wide'>
+<nav class='site-nav'>
+<a expr:href='data:blog.homepageUrl'>Home</a>
+<a href='/search/label/বাংলাদেশ'>বাংলাদেশ</a>
+<a href='/search/label/রাজনীতি'>রাজনীতি</a>
+<a href='/search/label/ব্যবসা'>ব্যবসা</a>
+<a href='/search/label/স্বাস্থ্য'>স্বাস্থ্য</a>
+<a href='/search/label/মতামত'>মতামত</a>
+</nav>
+<div class='nav-tools'>
+<form action='/search' class='search-form' method='get' role='search'>
+<input aria-label='Search' name='q' placeholder='খুঁজুন' type='search'/>
+<button class='btn btn-ghost' type='submit'>Search</button>
+</form>
+<div aria-label='Theme' class='theme-switch' role='group'>
+<button aria-pressed='false' data-theme-choice='device' type='button'>ডিভাইস</button>
+<button aria-pressed='false' data-theme-choice='light' type='button'>সাদা</button>
+<button aria-pressed='false' data-theme-choice='dark' type='button'>কালো</button>
+</div>
+</div>
+</div>
+</header>
+<main>
+<b:section class='main-section' id='main' showaddelement='yes'>
+<b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
+<b:widget-settings>
+<b:widget-setting name='showDateHeader'>false</b:widget-setting>
+<b:widget-setting name='showShareButtons'>true</b:widget-setting>
+<b:widget-setting name='showCommentLink'>true</b:widget-setting>
+<b:widget-setting name='showAuthor'>false</b:widget-setting>
+<b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+<b:widget-setting name='timestampLabel'/>
+<b:widget-setting name='reactionsLabel'/>
+<b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
+<b:widget-setting name='style.layout'>1x1</b:widget-setting>
+<b:widget-setting name='showLabels'>true</b:widget-setting>
+<b:widget-setting name='showLocation'>true</b:widget-setting>
+<b:widget-setting name='showTimestamp'>true</b:widget-setting>
+<b:widget-setting name='postsPerAd'>1</b:widget-setting>
+<b:widget-setting name='showBacklinks'>false</b:widget-setting>
+<b:widget-setting name='showInlineAds'>false</b:widget-setting>
+<b:widget-setting name='showReactions'>false</b:widget-setting>
+</b:widget-settings>
+<b:includable id='main' var='top'>
+<b:if cond='data:blog.searchQuery'>
+<div class='status-msg wrap-wide'>“<data:blog.searchQuery/>” এর জন্য অনুসন্ধানের ফলাফল</div>
+</b:if>
+<b:if cond='data:blog.searchLabel'>
+<div class='status-msg wrap-wide'>“<data:blog.searchLabel/>” বিভাগের পোস্ট</div>
+</b:if>
+<b:if cond='data:blog.pageType == "item"'>
+<div class='wrap'>
+<b:loop values='data:posts' var='post'>
+<b:include data='post' name='post'/>
+</b:loop>
+</div>
+<b:else/>
+<div class='wrap-wide portal'>
+<div class='portal-main'>
+<div class='posts-grid'>
+<b:loop values='data:posts' var='post'>
+<b:include data='post' name='post'/>
+</b:loop>
+</div>
+<b:if cond='data:blog.pageType == "index"'>
+<div class='pager'>
+<b:if cond='data:newerPageUrl'>
+<a class='btn btn-ghost' expr:href='data:newerPageUrl'>← নতুন পোস্ট</a>
+<b:else/>
+<span class='pager-spacer'/>
+</b:if>
+<b:if cond='data:olderPageUrl'>
+<a class='btn btn-ghost' expr:href='data:olderPageUrl'>পুরনো পোস্ট →</a>
+</b:if>
+</div>
+</b:if>
+</div>
+<aside class='live-rail'>
+<h2 class='rail-title'><span class='live-dot'/>সরাসরি</h2>
+<ul class='live-list' id='live-list'>
+<li class='loading'>লোড হচ্ছে...</li>
+</ul>
+</aside>
+</div>
+<b:if cond='data:blog.url == data:blog.homepageUrl'>
+<section class='top-five wrap-wide'>
+<h2 class='section-title'>আজকের ৫টি বড় খবর</h2>
+<ol class='top-five-list' id='top-five-list'>
+<li class='loading'>লোড হচ্ছে...</li>
+</ol>
+</section>
+<section class='label-blocks wrap-wide'>
+<div class='label-block sec-bd' data-label='বাংলাদেশ'>
+<div class='label-block-head'>
+<h3><a href='/search/label/বাংলাদেশ'>বাংলাদেশ</a></h3>
+<a class='more-link' href='/search/label/বাংলাদেশ'>সব খবর →</a>
+</div>
+<ul class='label-block-list'><li class='loading'>লোড হচ্ছে...</li></ul>
+</div>
+<div class='label-block sec-pol' data-label='রাজনীতি'>
+<div class='label-block-head'>
+<h3><a href='/search/label/রাজনীতি'>রাজনীতি</a></h3>
+<a class='more-link' href='/search/label/রাজনীতি'>সব খবর →</a>
+</div>
+<ul class='label-block-list'><li class='loading'>লোড হচ্ছে...</li></ul>
+</div>
+<div class='label-block sec-biz' data-label='ব্যবসা'>
+<div class='label-block-head'>
+<h3><a href='/search/label/ব্যবসা'>ব্যবসা</a></h3>
+<a class='more-link' href='/search/label/ব্যবসা'>সব খবর →</a>
+</div>
+<ul class='label-block-list'><li class='loading'>লোড হচ্ছে...</li></ul>
+</div>
+<div class='label-block sec-health' data-label='স্বাস্থ্য'>
+<div class='label-block-head'>
+<h3><a href='/search/label/স্বাস্থ্য'>স্বাস্থ্য</a></h3>
+<a class='more-link' href='/search/label/স্বাস্থ্য'>সব খবর →</a>
+</div>
+<ul class='label-block-list'><li class='loading'>লোড হচ্ছে...</li></ul>
+</div>
+<div class='label-block sec-opinion' data-label='মতামত'>
+<div class='label-block-head'>
+<h3><a href='/search/label/মতামত'>মতামত</a></h3>
+<a class='more-link' href='/search/label/মতামত'>সব খবর →</a>
+</div>
+<ul class='label-block-list'><li class='loading'>লোড হচ্ছে...</li></ul>
+</div>
+</section>
+</b:if>
+</b:if>
+</b:includable>
+<b:includable id='post' var='post'>
+<article expr:class='data:blog.pageType == "item" ? "post post-item" : (data:post.isFirstPost ? "post post-hero" : "post post-card")'>
+<b:if cond='data:blog.pageType == "item"'>
+<header class='post-header'>
+<h1 class='post-title'><data:post.title/></h1>
+<div class='post-meta'>
+<span class='meta-date'>
+<b:if cond='data:post.dateHeader'><data:post.dateHeader/><b:else/><data:post.timestamp/></b:if>
+</span>
+<b:if cond='data:post.author'>
+<span class='meta-author'><data:post.author/></span>
+</b:if>
+<b:if cond='data:post.labels'>
+<span class='post-labels'>
+<b:loop values='data:post.labels' var='label'>
+<a expr:href='data:label.url' rel='tag'><data:label.name/></a>
+</b:loop>
+</span>
+</b:if>
+<b:if cond='data:post.allowComments'>
+<a class='meta-comments' expr:href='data:post.addCommentUrl'><data:post.numberOfComments/> মন্তব্য</a>
+</b:if>
+</div>
+</header>
+<div class='post-body'>
+<data:post.body/>
+</div>
+<div class='related-labels' style='display:none'>
+<b:loop values='data:post.labels' var='label'>
+<span expr:data-name='data:label.name'/>
+</b:loop>
+</div>
+<section class='related' id='related-box'>
+<h3>আরও পড়ুন</h3>
+<p class='related-note'>একই বিষয়ে আরও লেখা।</p>
+<ul id='related-list'>
+<li class='related-loading'>লোড হচ্ছে...</li>
+</ul>
+</section>
+<b:else/>
+<b:if cond='data:post.isFirstPost'>
+<b:if cond='data:post.firstImageUrl'>
+<a class='hero-img' expr:href='data:post.url'><img expr:alt='data:post.title' expr:src='data:post.firstImageUrl'/></a>
+</b:if>
+<b:if cond='data:post.labels'>
+<span class='post-labels'>
+<b:loop values='data:post.labels' var='label'>
+<a expr:href='data:label.url' rel='tag'><data:label.name/></a>
+</b:loop>
+</span>
+</b:if>
+<h2 class='post-title'>
+<a expr:href='data:post.url'><data:post.title/></a>
+</h2>
+<b:if cond='data:post.snippet'>
+<p class='post-deck'><data:post.snippet/></p>
+</b:if>
+<div class='post-meta'>
+<span class='meta-date'>
+<b:if cond='data:post.dateHeader'><data:post.dateHeader/><b:else/><data:post.timestamp/></b:if>
+</span>
+</div>
+<b:else/>
+<b:if cond='data:post.firstImageUrl'>
+<a class='card-img' expr:href='data:post.url'><img expr:alt='data:post.title' expr:src='data:post.firstImageUrl'/></a>
+</b:if>
+<div class='card-body'>
+<b:if cond='data:post.labels'>
+<span class='post-labels'>
+<b:loop values='data:post.labels' var='label'>
+<a expr:href='data:label.url' rel='tag'><data:label.name/></a>
+</b:loop>
+</span>
+</b:if>
+<h3 class='post-title'>
+<a expr:href='data:post.url'><data:post.title/></a>
+</h3>
+<div class='post-meta'>
+<span class='meta-date'>
+<b:if cond='data:post.dateHeader'><data:post.dateHeader/><b:else/><data:post.timestamp/></b:if>
+</span>
+</div>
+<b:if cond='data:post.snippet'>
+<p class='card-excerpt'><data:post.snippet/></p>
+</b:if>
+</div>
+</b:if>
+</b:if>
+</article>
+</b:includable>
+</b:widget>
+</b:section>
+</main>
+<footer class='site-footer'>
+<div class='wrap-wide footer-grid'>
+<div class='footer-col'>
+<h3>আর্কাইভ</h3>
+<ul class='archive-list' id='archive-list'>
+<li>লোড হচ্ছে...</li>
+</ul>
+</div>
+<div class='footer-col'>
+<h3>পাতা</h3>
+<b:section class='footer-pages' id='footer-pages' showaddelement='no'>
+<b:widget id='PageList1' locked='false' title='Pages' type='PageList' version='2' visible='true'>
+<b:includable id='main'>
+<ul class='page-list'>
+<b:loop values='data:links' var='link'>
+<li><a expr:href='data:link.href'><data:link.title/></a></li>
+</b:loop>
+</ul>
+</b:includable>
+</b:widget>
+</b:section>
+</div>
+<div class='footer-col'>
+<h3>মসনদ সম্পর্কে</h3>
+<p>মসনদ বাংলাদেশের সংবাদ এক জায়গায় তুলে ধরে, নিজস্ব ভাষায়, সূত্রের উল্লেখসহ।</p>
+</div>
+</div>
+<div class='wrap-wide footer-bottom'>
+<p>© <span id='copy-year'>2026</span> <data:blog.title/>. All rights reserved.</p>
+</div>
+</footer>
+<script type='text/javascript'>
+//<![CDATA[
+(function () {
+  'use strict';
+
+  function entryLink(entry) {
+    var link = null;
+    (entry.link || []).forEach(function (l) {
+      if (l.rel === 'alternate') { link = l.href; }
+    });
+    return link;
+  }
+  function entryTitle(entry) {
+    return (entry.title && entry.title.$t) || 'Untitled';
+  }
+  function entryDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric' });
+    } catch (e) {
+      return '';
+    }
+  }
+  function entryTime(iso) {
+    try {
+      return new Date(iso).toLocaleTimeString('bn-BD', { hour: '2-digit', minute: '2-digit' });
+    } catch (e) {
+      return '';
+    }
+  }
+  function feedJson(url) {
+    return fetch(url).then(function (r) { return r.json(); });
+  }
+
+  /* Theme switch: device, white, black. Device follows prefers-color-scheme. */
+  var root = document.documentElement;
+  var themeBtns = document.querySelectorAll('[data-theme-choice]');
+  function applyTheme(choice) {
+    if (choice === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+    } else if (choice === 'light') {
+      root.setAttribute('data-theme', 'light');
+    } else {
+      root.removeAttribute('data-theme');
+    }
+    try { localStorage.setItem('moshnod-theme', choice); } catch (e) {}
+    themeBtns.forEach(function (b) {
+      var active = b.getAttribute('data-theme-choice') === choice;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+  var savedTheme = 'device';
+  try { savedTheme = localStorage.getItem('moshnod-theme') || 'device'; } catch (e) {}
+  if (savedTheme !== 'device' && savedTheme !== 'light' && savedTheme !== 'dark') { savedTheme = 'device'; }
+  themeBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      applyTheme(b.getAttribute('data-theme-choice'));
+    });
+  });
+  applyTheme(savedTheme);
+
+  /* Reading progress bar */
+  var bar = document.getElementById('progress-bar');
+  if (bar) {
+    var onScroll = function () {
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - doc.clientHeight;
+      var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+      bar.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  /* Breaking banner: latest post labelled ব্রেকিং, hidden when none exists */
+  var breakingBanner = document.getElementById('breaking-banner');
+  if (breakingBanner) {
+    feedJson('/feeds/posts/default/-/' + encodeURIComponent('ব্রেকিং') + '?alt=json&max-results=1')
+      .then(function (data) {
+        var entries = (data.feed && data.feed.entry) || [];
+        if (!entries.length) { return; }
+        var link = entryLink(entries[0]);
+        if (!link) { return; }
+        var a = document.getElementById('breaking-link');
+        a.href = link;
+        a.textContent = entryTitle(entries[0]);
+        breakingBanner.hidden = false;
+      })
+      .catch(function () {});
+  }
+
+  /* Top five stories of the day */
+  var topFive = document.getElementById('top-five-list');
+  if (topFive) {
+    var numerals = ['১', '২', '৩', '৪', '৫'];
+    feedJson('/feeds/posts/default?alt=json&max-results=5')
+      .then(function (data) {
+        var entries = (data.feed && data.feed.entry) || [];
+        topFive.innerHTML = '';
+        entries.forEach(function (entry, i) {
+          var link = entryLink(entry);
+          if (!link) { return; }
+          var li = document.createElement('li');
+          var num = document.createElement('span');
+          num.className = 'tf-num';
+          num.textContent = numerals[i] || (i + 1);
+          var body = document.createElement('div');
+          body.className = 'tf-body';
+          var a = document.createElement('a');
+          a.href = link;
+          a.textContent = entryTitle(entry);
+          var date = document.createElement('div');
+          date.className = 'tf-date';
+          date.textContent = entryDate(entry.published && entry.published.$t);
+          body.appendChild(a);
+          body.appendChild(date);
+          li.appendChild(num);
+          li.appendChild(body);
+          topFive.appendChild(li);
+        });
+        if (!topFive.children.length) {
+          topFive.innerHTML = '<li>এখনো কোনো খবর নেই।</li>';
+        }
+      })
+      .catch(function () {
+        topFive.innerHTML = '<li>খবর লোড করা যাচ্ছে না।</li>';
+      });
+  }
+
+  /* Live rail: latest posts with timestamps */
+  var liveList = document.getElementById('live-list');
+  if (liveList) {
+    feedJson('/feeds/posts/default?alt=json&max-results=8')
+      .then(function (data) {
+        var entries = (data.feed && data.feed.entry) || [];
+        liveList.innerHTML = '';
+        entries.forEach(function (entry) {
+          var link = entryLink(entry);
+          if (!link) { return; }
+          var li = document.createElement('li');
+          var time = document.createElement('span');
+          time.className = 'live-time';
+          time.textContent = entryTime(entry.published && entry.published.$t);
+          var a = document.createElement('a');
+          a.href = link;
+          a.textContent = entryTitle(entry);
+          li.appendChild(time);
+          li.appendChild(a);
+          liveList.appendChild(li);
+        });
+        if (!liveList.children.length) {
+          liveList.innerHTML = '<li>এখনো কোনো খবর নেই।</li>';
+        }
+      })
+      .catch(function () {
+        liveList.innerHTML = '<li>খবর লোড করা যাচ্ছে না।</li>';
+      });
+  }
+
+  /* Label section blocks: 3 latest posts per label */
+  var blocks = document.querySelectorAll('.label-block');
+  blocks.forEach(function (block) {
+    var label = block.getAttribute('data-label');
+    var list = block.querySelector('.label-block-list');
+    if (!label || !list) { return; }
+    feedJson('/feeds/posts/default/-/' + encodeURIComponent(label) + '?alt=json&max-results=3')
+      .then(function (data) {
+        var entries = (data.feed && data.feed.entry) || [];
+        list.innerHTML = '';
+        entries.forEach(function (entry) {
+          var link = entryLink(entry);
+          if (!link) { return; }
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = link;
+          a.textContent = entryTitle(entry);
+          var date = document.createElement('div');
+          date.className = 'lb-date';
+          date.textContent = entryDate(entry.published && entry.published.$t);
+          li.appendChild(a);
+          li.appendChild(date);
+          list.appendChild(li);
+        });
+        if (!list.children.length) {
+          list.innerHTML = '<li>এই বিভাগে এখনো কোনো খবর নেই।</li>';
+        }
+      })
+      .catch(function () {
+        list.innerHTML = '<li>খবর লোড করা যাচ্ছে না।</li>';
+      });
+  });
+
+  /* Related reading by shared label */
+  var relatedList = document.getElementById('related-list');
+  if (relatedList) {
+    var labelEl = document.querySelector('.related-labels span');
+    var label = labelEl ? labelEl.getAttribute('data-name') : null;
+    var currentUrl = window.location.href.split('#')[0].split('?')[0];
+    var feedUrl = label
+      ? '/feeds/posts/default/-/' + encodeURIComponent(label) + '?alt=json&max-results=6'
+      : '/feeds/posts/default?alt=json&max-results=6';
+    feedJson(feedUrl)
+      .then(function (data) {
+        var entries = (data.feed && data.feed.entry) || [];
+        var count = 0;
+        relatedList.innerHTML = '';
+        entries.forEach(function (entry) {
+          if (count >= 3) { return; }
+          var link = entryLink(entry);
+          if (!link) { return; }
+          if (link.split('#')[0].split('?')[0] === currentUrl) { return; }
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = link;
+          a.textContent = entryTitle(entry);
+          li.appendChild(a);
+          relatedList.appendChild(li);
+          count += 1;
+        });
+        if (!count) {
+          relatedList.innerHTML = '<li>এখনো সম্পর্কিত লেখা নেই।</li>';
+        }
+      })
+      .catch(function () {
+        relatedList.innerHTML = '<li>সম্পর্কিত লেখা লোড করা যাচ্ছে না।</li>';
+      });
+  }
+
+  /* Dated archive, grouped by month */
+  var archiveList = document.getElementById('archive-list');
+  if (archiveList) {
+    feedJson('/feeds/posts/default?alt=json&max-results=500')
+      .then(function (data) {
+        var groups = {};
+        var order = [];
+        ((data.feed && data.feed.entry) || []).forEach(function (entry) {
+          var pub = (entry.published && entry.published.$t) || '';
+          var year = pub.slice(0, 4);
+          var month = pub.slice(5, 7);
+          if (!year || !month) { return; }
+          var key = year + '/' + month;
+          if (!groups[key]) {
+            groups[key] = { count: 0, year: year, month: month };
+            order.push(key);
+          }
+          groups[key].count += 1;
+        });
+        var monthNames = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+        archiveList.innerHTML = '';
+        order.sort().reverse().forEach(function (key) {
+          var g = groups[key];
+          var li = document.createElement('li');
+          var a = document.createElement('a');
+          a.href = '/' + g.year + '/' + g.month + '/';
+          a.textContent = monthNames[parseInt(g.month, 10) - 1] + ' ' + g.year + ' (' + g.count + ')';
+          li.appendChild(a);
+          archiveList.appendChild(li);
+        });
+        if (!order.length) {
+          archiveList.innerHTML = '<li>এখনো কোনো পোস্ট নেই।</li>';
+        }
+      })
+      .catch(function () {
+        archiveList.innerHTML = '<li>আর্কাইভ লোড করা যাচ্ছে না।</li>';
+      });
+  }
+
+  /* Footer year */
+  var yearEl = document.getElementById('copy-year');
+  if (yearEl) { yearEl.textContent = new Date().getFullYear(); }
+})();
+//]]>
+</script>
+</body>
+</html>
